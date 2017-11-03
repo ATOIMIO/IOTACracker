@@ -24,14 +24,14 @@ function makeSeed() {
 
 function makeSeedAndCheck() {
 	var seed = makeSeed();
-	iota.api.getAccountData(seed, function(error, result) {
+	iota.api.getAccountData(seed, {start: 0, end: 1, security: 2}, function(error, result) {
 		if (result == null) {
 			makeSeedAndCheck();
 			return;
 		}
 
-		if (result.balance > 0 || result.addresses.length > 0 || result.inputs.length > 0) {
-			//console.log("Balance: "+result.balance+ "    Seed: "+ seed);
+		if (result.transfers.length > 0 || result.balance > 0 || result.addresses.length > 0 || result.inputs.length > 0) {
+			console.log("Balance: "+result.balance+ "    Seed: "+ seed);
 			addNonEmptySeed(seed);
 		}
 		//console.log("NO Balance: "+result.balance+ "    Seed: "+ seed);
@@ -87,7 +87,7 @@ function counterObject() {
 const express = require('express')
 const app = express()
 
-app.get('/iotabruteforce', function (req, res) {
+app.get('/iotacracker', function (req, res) {
 	var object = counterObject();
 	var string = "Generated seeds: " + object.counter + " Collisions: " + object.collisions;
 	var data = fs.readFileSync('public/index.html', 'utf8');
@@ -95,8 +95,8 @@ app.get('/iotabruteforce', function (req, res) {
 	res.send(data);
 })
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+app.listen(80, function () {
+  console.log('Example app listening on port 80!')
 })
 
 
