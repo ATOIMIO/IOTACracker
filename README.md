@@ -6,6 +6,7 @@ The collisions number should be 0 all the time.
 
 ## Install
 `npm install`
+
 `npm start`
 
 That's it.
