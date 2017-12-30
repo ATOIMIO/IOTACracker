@@ -26,6 +26,8 @@ function makeSeedAndCheck() {
 	var seed = makeSeed();
 	iota.api.getAccountData(seed, {start: 0, end: 1, security: 2}, function(error, result) {
 		if (result == null) {
+			console.log(error);
+			return;
 			makeSeedAndCheck();
 			return;
 		}

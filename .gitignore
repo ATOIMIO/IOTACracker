@@ -1,8 +1,5 @@
 .DS_STORE
 
-seeds.txt
-counter.txt
-
 # Logs
 logs
 *.log
